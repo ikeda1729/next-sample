@@ -1,10 +1,10 @@
-import axios from '../utils/axios';
-import { GetServerSideProps } from "next";
-import nookies from 'nookies'
+import axios from "../utils/axios"
+import { GetServerSideProps } from "next"
+import nookies from "nookies"
 
 type Data = {
-  id: number,
-  name: string,
+  id: number
+  name: string
   email: string
 }
 function Blog(data: Data) {
@@ -20,19 +20,17 @@ function Blog(data: Data) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = nookies.get(context)
 
-  const response = await axios.get("api/user/profile",
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': cookies.jwt,
-      },
-      withCredentials: true
-    }
-  );
+  const response = await axios.get("api/user/profile", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: cookies.jwt,
+    },
+    withCredentials: true,
+  })
   const data = response.data.data
 
   return {
-    props: data
+    props: data,
   }
 }
 

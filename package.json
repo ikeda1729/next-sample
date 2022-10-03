@@ -4,13 +4,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "boring-avatars": "^1.7.0",
     "next": "latest",
     "nookies": "^2.5.2",
+    "prettier": "^2.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-identicons": "^1.2.5",

@@ -1,23 +1,23 @@
-import { parseCookies, destroyCookie } from 'nookies'
-import { useState, useEffect } from 'react';
-import Avatar from "boring-avatars";
-import Link from 'next/link';
+import { parseCookies, destroyCookie } from "nookies"
+import { useState, useEffect } from "react"
+import Avatar from "boring-avatars"
+import Link from "next/link"
 
 export default function Header() {
   const cookies = parseCookies()
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false)
 
   useEffect(() => {
     if (cookies.jwt) {
-      setIsLogin(true);
+      setIsLogin(true)
     } else {
-      setIsLogin(false);
+      setIsLogin(false)
     }
-  }, [cookies.jwt]);
+  }, [cookies.jwt])
 
   function onSignOut() {
-    destroyCookie(null, 'name')
-    destroyCookie(null, 'jwt')
+    destroyCookie(null, "name")
+    destroyCookie(null, "jwt")
     setIsLogin(false)
   }
 
@@ -26,7 +26,7 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1 items-center">
-            <Link href='/'>
+            <Link href="/">
               <a className="mr-2">
                 <img
                   className="h-8 w-auto sm:h-10"
@@ -35,11 +35,11 @@ export default function Header() {
                 />
               </a>
             </Link>
-            <Link href='/'>
+            <Link href="/">
               <a className="text-2xl">NextGoApp</a>
             </Link>
           </div>
-          {isLogin ?
+          {isLogin ? (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <Avatar
                 size={40}
@@ -58,9 +58,12 @@ export default function Header() {
                 Logout
               </button>
             </div>
-            :
+          ) : (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-              <a href="login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+              <a
+                href="login"
+                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+              >
                 Login
               </a>
               <a
@@ -70,7 +73,7 @@ export default function Header() {
                 Sign up
               </a>
             </div>
-          }
+          )}
         </div>
       </div>
     </div>
