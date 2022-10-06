@@ -20,8 +20,8 @@ const LoginPage: NextPage = () => {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
-      setCookie(null, "name", response.data.data.name)
-      setCookie(null, "jwt", response.data.data.token)
+      console.log(response)
+      setCookie(null, "username", response.data.data.username)
       router.push("/")
     } catch (err: any) {
       setErrMsg(err.response.data.errors)
