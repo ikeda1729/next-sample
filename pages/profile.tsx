@@ -7,6 +7,7 @@ type Data = {
   name: string
   email: string
 }
+
 function Blog(data: Data) {
   return (
     <>
