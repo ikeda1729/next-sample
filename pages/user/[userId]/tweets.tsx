@@ -70,9 +70,7 @@ function UserTweets(data: TweetsProps) {
         withCredentials: true,
       })
       setFollowers(response.data.data.length)
-      console.log(cookies)
       setIsMe(cookies.userId == userId)
-      console.log(isMe)
     })()
   }, [])
 
