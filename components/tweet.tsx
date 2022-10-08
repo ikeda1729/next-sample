@@ -1,6 +1,6 @@
 import Avatar from "boring-avatars"
 import { AiOutlineHeart } from "react-icons/ai"
-import { Tweet } from "../pages/user/[userId]/tweet"
+import { Tweet } from "../pages/user/[userId]/tweets"
 
 type TweetPageProps = {
   tweet: Tweet
