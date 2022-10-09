@@ -1,6 +1,5 @@
 import axios from "../utils/axios"
 import { GetServerSideProps } from "next"
-import nookies from "nookies"
 
 type Data = {
   id: number
@@ -19,16 +18,16 @@ function Blog(data: Data) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const cookies = nookies.get(context)
-
-  const response = await axios.get("api/user/profile", {
+  const response = await axios.get(`/api/user/1/isFollowing`, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: cookies.jwt,
+      Cookie: context.req.headers.cookie || "",
     },
+
     withCredentials: true,
   })
   const data = response.data.data
+  console.log(response)
 
   return {
     props: data,
