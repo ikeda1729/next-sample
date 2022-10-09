@@ -24,7 +24,6 @@ export type TweetsProps = {
   }
 }
 
-
 function UserTweets(data: TweetsProps) {
   const [isFollowing, setIsFollowing] = useState(false)
   const [followings, setFollowings] = useState(0)
@@ -34,10 +33,11 @@ function UserTweets(data: TweetsProps) {
   const cookies = parseCookies()
 
   useEffect(() => {
-    (async () => {
-      const { userId } = router.query;
+    ;(async () => {
+      const { userId } = router.query
 
-      if (cookies.jwt) { // loginしていたらIsFollowingを計算
+      if (cookies.jwt) {
+        // loginしていたらIsFollowingを計算
         const response = await axios.get(`api/user/${userId}/isFollowing`, {
           headers: {
             "Content-Type": "application/json",
@@ -54,8 +54,8 @@ function UserTweets(data: TweetsProps) {
   }, [isFollowing])
 
   useEffect(() => {
-    (async () => {
-      const { userId } = router.query;
+    ;(async () => {
+      const { userId } = router.query
       let response = await axios.get(`api/user/${userId}/followings`, {
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function UserTweets(data: TweetsProps) {
   }, [])
 
   async function follow() {
-    const { userId } = router.query;
+    const { userId } = router.query
     const response = await axios.post(`api/relation/${userId}`, JSON.stringify({}), {
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ function UserTweets(data: TweetsProps) {
   }
 
   async function unfollow() {
-    const { userId } = router.query;
+    const { userId } = router.query
     const response = await axios.delete(`api/relation/${userId}`, {
       headers: {
         "Content-Type": "application/json",
@@ -101,21 +101,22 @@ function UserTweets(data: TweetsProps) {
       <div className="border-l border-r border-gray-200 max-w-xl container mx-auto">
         <div className="flex flex-col py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
           {!isMe && // 自分のページではfollowボタンを出さない
-            (isFollowing ? // followしていたらunfollowボタン
+            (isFollowing ? ( // followしていたらunfollowボタン
               <button
                 className="absolute right-0 mt-4 mr-4 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 onClick={unfollow}
               >
                 Unfollow
               </button>
-              : // followしていなかったらfollowボタン
+            ) : (
+              // followしていなかったらfollowボタン
               <button
                 className="absolute right-0 mt-4 mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 onClick={follow}
               >
                 Follow
-              </button>)
-          }
+              </button>
+            ))}
           <div className="mb-4">
             <Avatar
               size={80}

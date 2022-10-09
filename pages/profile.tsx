@@ -18,11 +18,10 @@ function Blog(data: Data) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-
   const response = await axios.get(`/api/user/1/isFollowing`, {
     headers: {
       "Content-Type": "application/json",
-      "Cookie": context.req.headers.cookie || "",
+      Cookie: context.req.headers.cookie || "",
     },
 
     withCredentials: true,

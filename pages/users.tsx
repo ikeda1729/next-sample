@@ -34,7 +34,6 @@ function Users(data: UserProps) {
               </Link>
             </div>
             <div className="flex-2">
-
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2 whitespace-nowrap">
                   <Link href={`user/${user.ID}/tweets`}>
@@ -54,7 +53,6 @@ function Users(data: UserProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-
   const response = await axios.get(`api/user`, {
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +60,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     withCredentials: true,
   })
   const data = response.data.data
-
 
   return {
     props: { data },
