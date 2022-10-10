@@ -66,7 +66,7 @@ export default function Header() {
                 </a>
               </Link>
               <div className="leading-5 hidden xl:inline ml-4">
-                <h4 className="font-bold">Sined in as</h4>
+                <h4 className="font-bold">Signed in as</h4>
                 <p className="text-gray-500">{cookies.username}</p>
               </div>
               <button
