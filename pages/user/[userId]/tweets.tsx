@@ -35,8 +35,7 @@ function UserTweets(data: TweetsProps) {
   const { userId } = router.query
 
   useEffect(() => {
-    ; (async () => {
-
+    ;(async () => {
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
         const response = await axios.get(`/api/user/${userId}/isFollowing`)
@@ -50,7 +49,7 @@ function UserTweets(data: TweetsProps) {
   }, [isFollowing])
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       let response = await axios.get(`/api/user/${userId}/followings`)
       setFollowings(response.data.data.length)
       response = await axios.get(`/api/user/${userId}/followers`, {

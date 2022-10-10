@@ -48,9 +48,7 @@ export default function Header() {
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <Link href="/users">
                 <a className="flex">
-                  <FaUsers
-                    className="text-4xl text-gray-500 mr-4"
-                  />
+                  <FaUsers className="text-4xl text-gray-500 mr-4" />
                   <div className="leading-5 hidden xl:inline mr-10">
                     <h4 className="font-bold">Users</h4>
                     <p className="text-gray-500">(User Index)</p>

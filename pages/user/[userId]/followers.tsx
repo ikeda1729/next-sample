@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next"
 import axios from "../../../utils/axios"
 import UserPage from "../../../components/user"
-import React from 'react'
+import React from "react"
 
 type PathParams = {
   userId: string
@@ -18,13 +18,10 @@ export type UserProps = {
 }
 
 function Followers(data: UserProps) {
-
   return (
     <div className="border-l border-r border-gray-200 max-w-xl container mx-auto">
       {data.data.map((user) => {
-        return (
-          <UserPage key={user.ID} user={user} />
-        )
+        return <UserPage key={user.ID} user={user} />
       })}
     </div>
   )
