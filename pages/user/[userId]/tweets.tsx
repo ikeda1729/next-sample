@@ -5,6 +5,7 @@ import TweetPage from "../../../components/tweet"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
+import Link from "next/link"
 
 type PathParams = {
   userId: string
@@ -31,10 +32,10 @@ function UserTweets(data: TweetsProps) {
   const [isMe, setIsMe] = useState(false)
   const router = useRouter()
   const cookies = parseCookies()
+  const { userId } = router.query
 
   useEffect(() => {
-    ;(async () => {
-      const { userId } = router.query
+    ; (async () => {
 
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
@@ -49,7 +50,7 @@ function UserTweets(data: TweetsProps) {
   }, [isFollowing])
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const { userId } = router.query
       let response = await axios.get(`api/user/${userId}/followings`)
       setFollowings(response.data.data.length)
@@ -107,12 +108,20 @@ function UserTweets(data: TweetsProps) {
           </div>
           <h2 className="text-lg sm:text-xl font-bold">{data.data.username}</h2>
           <div className="flex">
-            <div className="mr-2">
-              <span className="font-bold">{followings}</span> Following
-            </div>
-            <div>
-              <span className="font-bold">{followers}</span> Followers
-            </div>
+            <Link href={`/user/${userId}/followings`}>
+              <a>
+                <div className="mr-2">
+                  <span className="font-bold">{followings}</span> Following
+                </div>
+              </a>
+            </Link>
+            <Link href={`/user/${userId}/followers`}>
+              <a>
+                <div>
+                  <span className="font-bold">{followers}</span> Followers
+                </div>
+              </a>
+            </Link>
           </div>
         </div>
         {data.data.tweets.map((tweet) => {
