@@ -21,10 +21,7 @@ export default function Header() {
 
   const onSignOut = async (event: FormEvent) => {
     event.preventDefault()
-    await axios.post("api/auth/logout", "", {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    })
+    await axios.post("api/auth/logout", "")
     router.push("/")
   }
 
@@ -48,12 +45,16 @@ export default function Header() {
           </div>
           {isLogin ? (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-              <Avatar
-                size={40}
-                name={cookies.username}
-                variant="beam"
-                colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
-              />
+              <Link href={`user/${cookies.userId}/tweets`}>
+                <a>
+                  <Avatar
+                    size={40}
+                    name={cookies.username}
+                    variant="beam"
+                    colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+                  />
+                </a>
+              </Link>
               <div className="leading-5 hidden xl:inline ml-4">
                 <h4 className="font-bold">Sined in as</h4>
                 <p className="text-gray-500">{cookies.username}</p>

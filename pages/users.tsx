@@ -53,12 +53,7 @@ function Users(data: UserProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await axios.get(`api/user`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    withCredentials: true,
-  })
+  const response = await axios.get(`api/user`)
   const data = response.data.data
 
   return {

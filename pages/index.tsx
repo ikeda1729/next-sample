@@ -1,12 +1,14 @@
 import type { NextPage } from "next"
+import { useRouter } from "next/router"
+import { parseCookies } from "nookies"
 import LoginPage from "./login"
 
-const Home: NextPage = () => {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      {/* <LoginPage/> */}
-    </div>
-  )
+export default function Index() {
+  const router = useRouter()
+  const cookies = parseCookies()
+  if (cookies.jwt) {
+    router.push("/home")
+  } else {
+    router.push("/login")
+  }
 }
-
-export default Home
