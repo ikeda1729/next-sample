@@ -5,6 +5,7 @@ import Link from "next/link"
 import axios from "../utils/axios"
 import { useRouter } from "next/router"
 import type { FormEvent } from "react"
+import { FaUsers } from "react-icons/fa"
 
 export default function Header() {
   const router = useRouter()
@@ -45,7 +46,18 @@ export default function Header() {
           </div>
           {isLogin ? (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-              <Link href={`user/${cookies.userId}/tweets`}>
+              <Link href="/users">
+                <a className="flex">
+                  <FaUsers
+                    className="text-4xl text-gray-500 mr-4"
+                  />
+                  <div className="leading-5 hidden xl:inline mr-10">
+                    <h4 className="font-bold">Users</h4>
+                    <p className="text-gray-500">(User Index)</p>
+                  </div>
+                </a>
+              </Link>
+              <Link href={`/user/${cookies.userId}/tweets`}>
                 <a>
                   <Avatar
                     size={40}
