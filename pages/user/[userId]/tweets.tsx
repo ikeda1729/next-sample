@@ -59,8 +59,6 @@ function UserTweets(data: TweetsProps) {
         },
         withCredentials: true,
       })
-      console.log(userId)
-      console.log(response)
       setFollowers(response.data.data.length)
       setIsMe(cookies.userId == userId)
     })()
