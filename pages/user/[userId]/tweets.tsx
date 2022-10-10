@@ -39,7 +39,7 @@ function UserTweets(data: TweetsProps) {
 
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
-        const response = await axios.get(`api/user/${userId}/isFollowing`)
+        const response = await axios.get(`/api/user/${userId}/isFollowing`)
         if (response.data.data.IsFollowing) {
           setIsFollowing(true)
         } else {
@@ -51,29 +51,30 @@ function UserTweets(data: TweetsProps) {
 
   useEffect(() => {
     ; (async () => {
-      const { userId } = router.query
-      let response = await axios.get(`api/user/${userId}/followings`)
+      let response = await axios.get(`/api/user/${userId}/followings`)
       setFollowings(response.data.data.length)
-      response = await axios.get(`api/user/${userId}/followers`, {
+      response = await axios.get(`/api/user/${userId}/followers`, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       })
+      console.log(userId)
+      console.log(response)
       setFollowers(response.data.data.length)
       setIsMe(cookies.userId == userId)
     })()
-  }, [])
+  }, [userId])
 
   async function follow() {
     const { userId } = router.query
-    await axios.post(`api/relation/${userId}`, JSON.stringify({}))
+    await axios.post(`/api/relation/${userId}`, JSON.stringify({}))
     setIsFollowing(true)
   }
 
   async function unfollow() {
     const { userId } = router.query
-    await axios.delete(`api/relation/${userId}`)
+    await axios.delete(`/api/relation/${userId}`)
     setIsFollowing(false)
   }
 
@@ -138,7 +139,7 @@ function UserTweets(data: TweetsProps) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { userId } = context.params as PathParams
 
-  let response = await axios.get(`api/user/${userId}/tweet`, {
+  let response = await axios.get(`/api/user/${userId}/tweet`, {
     headers: {
       "Content-Type": "application/json",
     },

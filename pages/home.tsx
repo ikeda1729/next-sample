@@ -27,7 +27,7 @@ function Timeline() {
     if (loading) return
     setLoading(true)
 
-    const response = await axios.post(`api/tweet`, JSON.stringify({ content: input }))
+    const response = await axios.post(`/api/tweet`, JSON.stringify({ content: input }))
 
     setInput("")
     setSentData((sentData) => [response.data.data, ...sentData])
@@ -37,7 +37,7 @@ function Timeline() {
   const cookies = parseCookies()
 
   // sentDataの更新とSWRのrevalidateがバッティングするのでrelaidateをオフにする
-  const { data, error } = useSWR("api/tweet/timeline", axios, {
+  const { data, error } = useSWR("/api/tweet/timeline", axios, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
@@ -78,9 +78,15 @@ function Timeline() {
         {sentData.map((tweet: Tweet) => {
           return <TweetPage key={tweet.ID} tweet={tweet} username={cookies.username} />
         })}
-        {data.data.data.map((x: Tweetprops) => {
-          return <TweetPage key={x.Tweet.ID} tweet={x.Tweet} username={x.Username} />
-        })}
+        {data.data.data ?
+          data.data.data.map((x: Tweetprops) => {
+            return <TweetPage key={x.Tweet.ID} tweet={x.Tweet} username={x.Username} />
+          })
+          :
+          < div className="flex px-3 pt-3 pb-2 border-b border-gray-200 text-xl font-bold">
+            {sentData.length == 0 ? "No tweet yet" : ""}
+          </div>
+        }
       </div>
     </>
   )
