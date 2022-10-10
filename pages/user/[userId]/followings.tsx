@@ -32,7 +32,7 @@ function Followings(data: UserProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { userId } = context.params as PathParams
-  const response = await axios.get(`api/user/${userId}/followings`)
+  const response = await axios.get(`/api/user/${userId}/followings`)
   const data = response.data.data
 
   return {

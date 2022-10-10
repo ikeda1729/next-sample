@@ -22,7 +22,7 @@ export default function Header() {
 
   const onSignOut = async (event: FormEvent) => {
     event.preventDefault()
-    await axios.post("api/auth/logout", "")
+    await axios.post("/api/auth/logout", "")
     router.push("/")
   }
 

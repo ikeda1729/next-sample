@@ -16,7 +16,7 @@ const LoginPage: NextPage = () => {
   const onSubmit = async (event: FormEvent) => {
     try {
       event.preventDefault()
-      const response = await axios.post("api/auth/login", JSON.stringify({ email, password }))
+      const response = await axios.post("/api/auth/login", JSON.stringify({ email, password }))
       setCookie(null, "username", response.data.data.Username)
       setCookie(null, "userId", response.data.data.UserID)
       router.push("/home")

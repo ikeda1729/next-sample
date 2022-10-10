@@ -21,7 +21,7 @@ const LoginPage: NextPage = () => {
       if (password != passwordConfirmation) {
         return setErrMsg("Confirm your password")
       }
-      const response = await axios.post("api/user", JSON.stringify({ username, email, password }))
+      const response = await axios.post("/api/user", JSON.stringify({ username, email, password }))
       router.push("/login")
     } catch (err: any) {
       setErrMsg(JSON.stringify(err.response.data.data))

@@ -27,7 +27,7 @@ function Timeline() {
     if (loading) return
     setLoading(true)
 
-    const response = await axios.post(`api/tweet`, JSON.stringify({ content: input }))
+    const response = await axios.post(`/api/tweet`, JSON.stringify({ content: input }))
 
     setInput("")
     setSentData((sentData) => [response.data.data, ...sentData])
@@ -37,7 +37,7 @@ function Timeline() {
   const cookies = parseCookies()
 
   // sentDataの更新とSWRのrevalidateがバッティングするのでrelaidateをオフにする
-  const { data, error } = useSWR("api/tweet/timeline", axios, {
+  const { data, error } = useSWR("/api/tweet/timeline", axios, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,

@@ -12,7 +12,7 @@ export default function TweetPage({ tweet, username }: TweetPageProps) {
   return (
     <div className="flex px-3 pt-3 pb-2 border-b border-gray-200">
       <div className="mr-4">
-        <Link href={`user/${tweet.user_id}/tweets`}>
+        <Link href={`/user/${tweet.user_id}/tweets`}>
           <a>
             <Avatar
               size={40}

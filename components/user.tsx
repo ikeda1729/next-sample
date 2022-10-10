@@ -25,7 +25,7 @@ export default function UserPage({ user }: UserProps) {
       <div className="flex-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 whitespace-nowrap">
-            <Link href={`user/${user.ID}/tweets`}>
+            <Link href={`/user/${user.ID}/tweets`}>
               <a className="font-bold text-[15px] sm:text-[16px]">{user.Username}</a>
             </Link>
             <span className="text-sm sm:text-[14px] text-right">
