@@ -38,12 +38,7 @@ function UserTweets(data: TweetsProps) {
 
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
-        const response = await axios.get(`api/user/${userId}/isFollowing`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        })
+        const response = await axios.get(`api/user/${userId}/isFollowing`)
         if (response.data.data.IsFollowing) {
           setIsFollowing(true)
         } else {
