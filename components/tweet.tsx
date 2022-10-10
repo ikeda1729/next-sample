@@ -1,4 +1,5 @@
 import Avatar from "boring-avatars"
+import Link from "next/link"
 // import { AiOutlineHeart } from "react-icons/ai"
 import { Tweet } from "../pages/user/[userId]/tweets"
 
@@ -11,12 +12,16 @@ export default function TweetPage({ tweet, username }: TweetPageProps) {
   return (
     <div className="flex px-3 pt-3 pb-2 border-b border-gray-200">
       <div className="mr-4">
-        <Avatar
-          size={40}
-          name={username}
-          variant="beam"
-          colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
-        />
+        <Link href={`user/${tweet.user_id}/tweets`}>
+          <a>
+            <Avatar
+              size={40}
+              name={username}
+              variant="beam"
+              colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+            />
+          </a>
+        </Link>
       </div>
       <div className="flex-1">
         <div className="flex items-center justify-between">
