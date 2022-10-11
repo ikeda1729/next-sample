@@ -52,12 +52,7 @@ function UserTweets(data: TweetsProps) {
     ;(async () => {
       let response = await axios.get(`/api/user/${userId}/followings`)
       setFollowings(response.data.data.length)
-      response = await axios.get(`/api/user/${userId}/followers`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+      response = await axios.get(`/api/user/${userId}/followers`)
       setFollowers(response.data.data.length)
       setIsMe(cookies.userId == userId)
     })()
@@ -136,12 +131,7 @@ function UserTweets(data: TweetsProps) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { userId } = context.params as PathParams
 
-  let response = await axios.get(`/api/user/${userId}/tweet`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    withCredentials: true,
-  })
+  let response = await axios.get(`/api/user/${userId}/tweet`)
   const data = response.data.data
 
   return {
