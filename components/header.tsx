@@ -55,7 +55,7 @@ export default function Header() {
                   </div>
                 </a>
               </Link>
-              <Link href={`/user/${cookies.userId}/tweets`}>
+              <Link href={`/user/${cookies.userId}/tweets/page/1`}>
                 <a>
                   <Avatar
                     size={40}

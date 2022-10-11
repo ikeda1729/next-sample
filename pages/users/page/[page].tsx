@@ -23,7 +23,7 @@ function Users(data: UserProps) {
           return <UserPage key={user.ID} user={user} />
         })}
       </div>
-      <Pagnation totalCount={data.totalCount} currentPage={data.currentPage} />
+      <Pagnation totalCount={data.totalCount} currentPage={data.currentPage} baseUrl={"/users/page/"} />
     </>
   )
 }
