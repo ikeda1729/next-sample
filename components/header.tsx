@@ -1,4 +1,4 @@
-import { parseCookies, destroyCookie } from "nookies"
+import { parseCookies } from "nookies"
 import { useState, useEffect } from "react"
 import Avatar from "boring-avatars"
 import Link from "next/link"

@@ -1,7 +1,6 @@
 import Avatar from "boring-avatars"
 import Link from "next/link"
-// import { AiOutlineHeart } from "react-icons/ai"
-import { User } from "../pages/users"
+import { User } from "../pages/users/page/[page]"
 
 type UserProps = {
   user: User

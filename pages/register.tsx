@@ -3,7 +3,6 @@ import type { FormEvent } from "react"
 import { NextPage } from "next"
 import { useState } from "react"
 import { useRouter } from "next/router"
-import { setCookie } from "nookies"
 
 import axios from "../utils/axios"
 

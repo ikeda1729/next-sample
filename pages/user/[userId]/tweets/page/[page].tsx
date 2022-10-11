@@ -35,7 +35,7 @@ function UserTweets(data: TweetsProps) {
   const { userId } = router.query
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
         const response = await axios.get(`/api/user/${userId}/isFollowing`)
@@ -49,7 +49,7 @@ function UserTweets(data: TweetsProps) {
   }, [isFollowing])
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       let response = await axios.get(`/api/user/${userId}/followings`)
       setFollowings(response.data.data.length)
       response = await axios.get(`/api/user/${userId}/followers`)
@@ -122,7 +122,11 @@ function UserTweets(data: TweetsProps) {
             return <TweetPage key={tweet.ID} tweet={tweet} username={data.data.username} />
           })}
         </div>
-        <Pagnation totalCount={data.totalCount} currentPage={data.currentPage} baseUrl={`/user/${userId}/tweets/page/`}/>
+        <Pagnation
+          totalCount={data.totalCount}
+          currentPage={data.currentPage}
+          baseUrl={`/user/${userId}/tweets/page/`}
+        />
       </>
     )
   } else
@@ -142,9 +146,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get(`/api/user/${userId}/tweet`, {
     params: {
       page,
-      page_size: PAGE_SIZE
-    }
-  });
+      page_size: PAGE_SIZE,
+    },
+  })
   const data = response.data.data
 
   return {

@@ -1,6 +1,6 @@
 // import axios from "../utils/axios"
 import TweetPage from "../../../components/tweet"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import axios from "../../../utils/axios"
 import useSWR from "swr"
 import Avatar from "boring-avatars"
@@ -95,7 +95,11 @@ function Timeline() {
           </div>
         )}
       </div>
-      <Pagnation totalCount={data.data.totalCount} currentPage={Number(page)} baseUrl={"/timeline/page/"} />
+      <Pagnation
+        totalCount={data.data.totalCount}
+        currentPage={Number(page)}
+        baseUrl={"/timeline/page/"}
+      />
     </>
   )
 }

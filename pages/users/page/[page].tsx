@@ -23,7 +23,11 @@ function Users(data: UserProps) {
           return <UserPage key={user.ID} user={user} />
         })}
       </div>
-      <Pagnation totalCount={data.totalCount} currentPage={data.currentPage} baseUrl={"/users/page/"} />
+      <Pagnation
+        totalCount={data.totalCount}
+        currentPage={data.currentPage}
+        baseUrl={"/users/page/"}
+      />
     </>
   )
 }
@@ -33,11 +37,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     page: string
   }
   const { page } = context.params as PathParams
-  const response = await axios.get('api/user', {
+  const response = await axios.get("api/user", {
     params: {
-      page
-    }
-  });
+      page,
+    },
+  })
   const data = response.data.data
 
   return {

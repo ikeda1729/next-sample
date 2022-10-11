@@ -1,11 +1,9 @@
-import type { NextPage } from "next"
 import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
-import LoginPage from "./login"
 
 export default function Index() {
   const router = useRouter()
-  const isReady = router.isReady;
+  const isReady = router.isReady
 
   if (!isReady) {
     return <div>Loading</div>
