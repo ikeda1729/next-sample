@@ -10,7 +10,7 @@ export default function UserPage({ user }: UserProps) {
   return (
     <div key={user.ID} className="relative flex px-4 pt-3 pb-2 border-b border-gray-200">
       <div className="mr-5">
-        <Link href={`/user/${user.ID}/tweets`}>
+        <Link href={`/user/${user.ID}/tweets/page/1`}>
           <a>
             <Avatar
               size={39}
