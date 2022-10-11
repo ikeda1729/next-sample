@@ -19,7 +19,7 @@ const LoginPage: NextPage = () => {
       const response = await axios.post("/api/auth/login", JSON.stringify({ email, password }))
       setCookie(null, "username", response.data.data.Username)
       setCookie(null, "userId", response.data.data.UserID)
-      router.push("/home")
+      router.push("/timeline/page/1")
     } catch (err: any) {
       setErrMsg(JSON.stringify(err.response.data.data))
     }
