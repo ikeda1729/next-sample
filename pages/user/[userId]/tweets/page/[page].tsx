@@ -8,6 +8,7 @@ import { parseCookies } from "nookies"
 import Link from "next/link"
 import Pagnation from "../../../../../components/pagination"
 import { PAGE_SIZE } from "../../../../../utils/pagesize"
+import NoContent from "../../../../../components/NoContent"
 
 export type Tweet = {
   ID: string
@@ -51,9 +52,9 @@ function UserTweets(data: TweetsProps) {
   useEffect(() => {
     ;(async () => {
       let response = await axios.get(`/api/user/${userId}/followings`)
-      setFollowings(response.data.data.length)
+      setFollowings(response.data.totalCount)
       response = await axios.get(`/api/user/${userId}/followers`)
-      setFollowers(response.data.data.length)
+      setFollowers(response.data.totalCount)
       setIsMe(cookies.userId == userId)
     })()
   }, [userId])
@@ -102,14 +103,14 @@ function UserTweets(data: TweetsProps) {
             </div>
             <h2 className="text-lg sm:text-xl font-bold">{data.data.username}</h2>
             <div className="flex">
-              <Link href={`/user/${userId}/followings`}>
+              <Link href={`/user/${userId}/followings/page/1`}>
                 <a>
                   <div className="mr-2">
                     <span className="font-bold">{followings}</span> Following
                   </div>
                 </a>
               </Link>
-              <Link href={`/user/${userId}/followers`}>
+              <Link href={`/user/${userId}/followers/page/1`}>
                 <a>
                   <div>
                     <span className="font-bold">{followers}</span> Followers
@@ -121,6 +122,7 @@ function UserTweets(data: TweetsProps) {
           {data.data.tweets.map((tweet) => {
             return <TweetPage key={tweet.ID} tweet={tweet} username={data.data.username} />
           })}
+          {data.totalCount == 0 && <NoContent content={"No tweet yet"}/>}
         </div>
         <Pagnation
           totalCount={data.totalCount}
