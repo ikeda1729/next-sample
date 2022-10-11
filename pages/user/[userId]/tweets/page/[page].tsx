@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 import { parseCookies } from "nookies"
 import Link from "next/link"
 import Pagnation from "../../../../../components/pagination"
+import { PAGE_SIZE } from "../../../../../utils/pagesize"
 
 export type Tweet = {
   ID: string
@@ -141,7 +142,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get(`/api/user/${userId}/tweet`, {
     params: {
       page,
-      page_size: 20
+      page_size: PAGE_SIZE
     }
   });
   const data = response.data.data
