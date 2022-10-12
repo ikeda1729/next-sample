@@ -4,9 +4,7 @@ import React from "react"
 import { UserContent, UserProps } from "../../../../../components/UserContent"
 
 function Followers(data: UserProps) {
-  return (
-    <UserContent data = { data } title={"Followers"} baseUrl={"users/page"} />
-  )
+  return <UserContent data={data} title={"Followers"} baseUrl={"users/page"} />
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

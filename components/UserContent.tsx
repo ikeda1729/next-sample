@@ -16,11 +16,17 @@ export type UserProps = {
   baseUrl: string
 }
 
-export type UserContentProps = {
+export type UserContentProps = {}
 
-}
-
-export function UserContent({ data, title, baseUrl }: { data: UserProps, title: string, baseUrl: string }) {
+export function UserContent({
+  data,
+  title,
+  baseUrl,
+}: {
+  data: UserProps
+  title: string
+  baseUrl: string
+}) {
   return (
     <>
       <div className="border-l border-r border-gray-200 max-w-xl container mx-auto">
@@ -32,16 +38,9 @@ export function UserContent({ data, title, baseUrl }: { data: UserProps, title: 
             return <UserPage key={user.ID} user={user} />
           })}
         </div>
-        {data.totalCount == 0 &&
-          <NoContent content={`No ${title} yet`} />
-        }
+        {data.totalCount == 0 && <NoContent content={`No ${title} yet`} />}
       </div>
-      <Pagnation
-        totalCount={data.totalCount}
-        currentPage={data.currentPage}
-        baseUrl={baseUrl}
-      />
+      <Pagnation totalCount={data.totalCount} currentPage={data.currentPage} baseUrl={baseUrl} />
     </>
   )
 }
-

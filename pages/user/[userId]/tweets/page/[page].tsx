@@ -122,7 +122,7 @@ function UserTweets(data: TweetsProps) {
           {data.data.tweets.map((tweet) => {
             return <TweetPage key={tweet.ID} tweet={tweet} username={data.data.username} />
           })}
-          {data.totalCount == 0 && <NoContent content={"No tweet yet"}/>}
+          {data.totalCount == 0 && <NoContent content={"No tweet yet"} />}
         </div>
         <Pagnation
           totalCount={data.totalCount}
