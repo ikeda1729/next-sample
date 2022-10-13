@@ -3,7 +3,7 @@ import axios from "../../../utils/axios"
 import { UserContent, UserProps } from "../../../components/UserContent"
 
 function Users(data: UserProps) {
-  return <UserContent data={data} title={"Users"} baseUrl="/users/page" />
+  return <UserContent data={data} title={"Users"} baseUrl="/users/page/" />
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
