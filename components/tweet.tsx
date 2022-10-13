@@ -1,7 +1,7 @@
 import Avatar from "boring-avatars"
 import Link from "next/link"
 // import { AiOutlineHeart } from "react-icons/ai"
-import { Tweet } from "../pages/user/[userId]/tweets"
+import { Tweet } from "../pages/user/[userId]/tweets/page/[page]"
 
 type TweetPageProps = {
   tweet: Tweet
@@ -12,7 +12,7 @@ export default function TweetPage({ tweet, username }: TweetPageProps) {
   return (
     <div className="flex px-3 pt-3 pb-2 border-b border-gray-200">
       <div className="mr-4">
-        <Link href={`/user/${tweet.user_id}/tweets`}>
+        <Link href={`/user/${tweet.user_id}/tweets/page/1`}>
           <a>
             <Avatar
               size={40}

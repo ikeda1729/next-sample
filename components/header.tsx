@@ -1,4 +1,4 @@
-import { parseCookies, destroyCookie } from "nookies"
+import { parseCookies } from "nookies"
 import { useState, useEffect } from "react"
 import Avatar from "boring-avatars"
 import Link from "next/link"
@@ -46,7 +46,7 @@ export default function Header() {
           </div>
           {isLogin ? (
             <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-              <Link href="/users">
+              <Link href="/users/page/1">
                 <a className="flex">
                   <FaUsers className="text-4xl text-gray-500 mr-4" />
                   <div className="leading-5 hidden xl:inline mr-10">
@@ -55,7 +55,7 @@ export default function Header() {
                   </div>
                 </a>
               </Link>
-              <Link href={`/user/${cookies.userId}/tweets`}>
+              <Link href={`/user/${cookies.userId}/tweets/page/1`}>
                 <a>
                   <Avatar
                     size={40}
