@@ -1,4 +1,4 @@
-import { parseCookies } from "nookies"
+import { destroyCookie, parseCookies } from "nookies"
 import { useState, useEffect } from "react"
 import Avatar from "boring-avatars"
 import Link from "next/link"
@@ -22,6 +22,8 @@ export default function Header() {
 
   const onSignOut = async (event: FormEvent) => {
     event.preventDefault()
+    destroyCookie(null, "name")
+    destroyCookie(null, "userId")
     await axios.post("/api/auth/logout", "")
     router.push("/")
   }
