@@ -30,25 +30,42 @@ function Timeline() {
   let { page } = router.query
   page = page || "1"
 
+  const cookies = parseCookies()
+
   const sendPost = async () => {
     if (loading) return
     setLoading(true)
 
-    const response = await axios.post(`/api/tweet`, JSON.stringify({ content: input }))
+    const response = await axios.post(`/api/tweet`, JSON.stringify({ content: input }), {
+      headers: {
+        Authorization: `Bearer ${cookies.jwt}`,
+      },
+    })
 
     setInput("")
     setSentData((sentData) => [response.data.data, ...sentData])
     setLoading(false)
   }
 
-  const cookies = parseCookies()
+  const fetcher = (url: string, token: string) =>
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data)
 
   // sentDataの更新とSWRのrevalidateがバッティングするのでrelaidateをオフにする
-  const { data, error } = useSWR(`/api/tweet/timeline?page=${page}&page_size=${PAGE_SIZE}`, axios, {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  })
+  const { data, error } = useSWR(
+    [`/api/tweet/timeline?page=${page}&page_size=${PAGE_SIZE}`, cookies.jwt],
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    },
+  )
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
@@ -85,8 +102,8 @@ function Timeline() {
         {sentData.map((tweet: Tweet) => {
           return <TweetPage key={tweet.ID} tweet={tweet} username={cookies.username} />
         })}
-        {data.data.data ? (
-          data.data.data.map((tweet: Tweet) => {
+        {data.data ? (
+          data.data.map((tweet: Tweet) => {
             return <TweetPage key={tweet.ID} tweet={tweet} username={tweet.username} />
           })
         ) : (
@@ -96,7 +113,7 @@ function Timeline() {
         )}
       </div>
       <Pagnation
-        totalCount={data.data.totalCount}
+        totalCount={data.totalCount}
         currentPage={Number(page)}
         baseUrl={"/timeline/page/"}
       />

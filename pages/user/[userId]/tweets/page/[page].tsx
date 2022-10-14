@@ -39,7 +39,11 @@ function UserTweets(data: TweetsProps) {
     ;(async () => {
       if (cookies.jwt) {
         // loginしていたらIsFollowingを計算
-        const response = await axios.get(`/api/user/${userId}/isFollowing`)
+        const response = await axios.get(`/api/user/${userId}/isFollowing`, {
+          headers: {
+            Authorization: `Bearer ${cookies.jwt}`,
+          },
+        })
         if (response.data.data.IsFollowing) {
           setIsFollowing(true)
         } else {
@@ -61,13 +65,21 @@ function UserTweets(data: TweetsProps) {
 
   async function follow() {
     const { userId } = router.query
-    await axios.post(`/api/relation/${userId}`, JSON.stringify({}))
+    await axios.post(`/api/relation/${userId}`, JSON.stringify({}), {
+      headers: {
+        Authorization: `Bearer ${cookies.jwt}`,
+      },
+    })
     setIsFollowing(true)
   }
 
   async function unfollow() {
     const { userId } = router.query
-    await axios.delete(`/api/relation/${userId}`)
+    await axios.delete(`/api/relation/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${cookies.jwt}`,
+      },
+    })
     setIsFollowing(false)
   }
 
