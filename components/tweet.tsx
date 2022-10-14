@@ -1,6 +1,5 @@
 import Avatar from "boring-avatars"
 import Link from "next/link"
-// import { AiOutlineHeart } from "react-icons/ai"
 import { Tweet } from "../pages/user/[userId]/tweets/page/[page]"
 
 type TweetPageProps = {
@@ -35,23 +34,6 @@ export default function TweetPage({ tweet, username }: TweetPageProps) {
 
         {tweet.content}
 
-        {/* <div className="flex justify-between text-gray-500">
-          <div className="flex items-center select-none">
-            <div className="flex items-center mt-2">
-              {true ? (
-                <AiOutlineHeart
-                  // onClick={likePost}
-                  className="hoverEffect text-red-600 hover:bg-red-100 cursor-pointer"
-                />
-              ) : (
-                <AiOutlineHeart
-                  // onClick={likePost}
-                  className="hoverEffect text-red-600 hover:bg-red-100 cursor-pointer"
-                />
-              )}
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   )
