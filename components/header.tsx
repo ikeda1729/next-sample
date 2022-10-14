@@ -22,6 +22,7 @@ export default function Header() {
 
   const onSignOut = async (event: FormEvent) => {
     event.preventDefault()
+    destroyCookie(null, "jwt")
     destroyCookie(null, "name")
     destroyCookie(null, "userId")
     await axios.post("/api/auth/logout", "")
