@@ -2,7 +2,6 @@ import { destroyCookie, parseCookies } from "nookies"
 import { useState, useEffect } from "react"
 import Avatar from "boring-avatars"
 import Link from "next/link"
-import axios from "../utils/axios"
 import { useRouter } from "next/router"
 import type { FormEvent } from "react"
 import { FaUsers } from "react-icons/fa"
@@ -25,7 +24,6 @@ export default function Header() {
     destroyCookie(null, "jwt")
     destroyCookie(null, "name")
     destroyCookie(null, "userId")
-    // await axios.post("/api/auth/logout", "")
     router.push("/")
   }
 
