@@ -25,7 +25,7 @@ export default function Header() {
     destroyCookie(null, "jwt")
     destroyCookie(null, "name")
     destroyCookie(null, "userId")
-    await axios.post("/api/auth/logout", "")
+    // await axios.post("/api/auth/logout", "")
     router.push("/")
   }
 
