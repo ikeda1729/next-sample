@@ -22,7 +22,7 @@ const LoginPage: NextPage = () => {
       setCookie(null, "userId", response.data.data.UserID)
       router.push("/timeline/page/1")
     } catch (err: any) {
-      setErrMsg(JSON.stringify(err.response.data.data))
+      setErrMsg(JSON.stringify(err.response.data))
     }
   }
 
