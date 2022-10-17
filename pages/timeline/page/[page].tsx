@@ -56,11 +56,12 @@ function Timeline() {
       })
       .then((res) => res.data)
 
-  // sentDataの更新とSWRのrevalidateがバッティングするのでrelaidateをオフにする
+  // sentDataの更新とSWRのrevalidateがバッティングするのでrevalidateをオフにする
   const { data, error } = useSWR(
     [`/api/tweet/timeline?page=${page}&page_size=${PAGE_SIZE}`, cookies.jwt],
     fetcher,
     {
+      revalidateOnMount: true,
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
