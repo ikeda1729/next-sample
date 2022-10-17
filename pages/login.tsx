@@ -74,6 +74,11 @@ const LoginPage: NextPage = () => {
           </button>
         </div>
       </form>
+      <div className="flex flex-col">
+        <div className="font-bold">For a test login, please use:</div>
+        <div>ArtVenere@ex.com</div>
+        <div>password</div>
+      </div>
     </div>
   )
 }
